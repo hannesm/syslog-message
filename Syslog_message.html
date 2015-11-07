@@ -444,7 +444,9 @@ The type for Syslog messages<br>
 <code class="code">parse</code>s a string containing a Syslog message and returns an option <a href="Syslog_message.html#TYPEt"><code class="code">Syslog_message.t</code></a><br>
 </div>
 
-<pre><span id="VALto_string"><span class="keyword">val</span> to_string</span> : <code class="type"><a href="Syslog_message.html#TYPEt">t</a> -> string</code></pre><div class="info ">
-<code class="code">to_string</code> returns a Syslog message of type <a href="Syslog_message.html#TYPEt"><code class="code">Syslog_message.t</code></a> as string<br>
+<pre><span id="VALto_string"><span class="keyword">val</span> to_string</span> : <code class="type">?len:int -> <a href="Syslog_message.html#TYPEt">t</a> -> string</code></pre><div class="info ">
+<code class="code">to_string</code> returns a Syslog message of type <a href="Syslog_message.html#TYPEt"><code class="code">Syslog_message.t</code></a> as string.
+The output string is truncated to 1024 bytes, which is the default of <code class="code">len</code>.
+Setting <code class="code">len</code> to 0, leaves the output string unmodified.<br>
 </div>
 </body></html>

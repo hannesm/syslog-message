@@ -76,5 +76,5 @@
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;pp_string&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;pp&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;parse&nbsp;:&nbsp;?ctx:<span class="constructor">Syslog_message</span>.ctx&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Syslog_message</span>.t&nbsp;option<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;to_string&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;to_string&nbsp;:&nbsp;?len:int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Syslog_message</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
 <span class="keyword">end</span></code></body></html>
