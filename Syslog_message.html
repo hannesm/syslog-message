@@ -343,6 +343,52 @@ The type for RFC 3164 compatible timestamps<br>
 <code class="code">string_of_timestamp</code> Converts a <a href="Syslog_message.html#TYPEtimestamp"><code class="code">Syslog_message.timestamp</code></a> into a string<br>
 </div>
 
+<pre><code><span id="TYPEctx"><span class="keyword">type</span> <code class="type"></code>ctx</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTctx.timestamp">timestamp</span>&nbsp;: <code class="type"><a href="Syslog_message.html#TYPEtimestamp">timestamp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTctx.hostname">hostname</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTctx.set_hostname">set_hostname</span>&nbsp;: <code class="type">bool</code>;</code></td>
+
+</tr></table>
+}
+
+<div class="info ">
+<code class="code">ctx</code> provides additional information to the <a href="Syslog_message.html#VALparse"><code class="code">Syslog_message.parse</code></a> function in case one of the
+sub-parsers fails.<ul>
+<li><code class="code">timestamp</code>: A <a href="Syslog_message.html#TYPEtimestamp"><code class="code">Syslog_message.timestamp</code></a></li>
+<li><code class="code">hostname</code>: Hostname, IPv4 or IPv6 address of the sender. "<i>-</i>" if unknown.</li>
+<li><code class="code">set_hostname</code>: If true, the <a href="Syslog_message.html#VALparse"><code class="code">Syslog_message.parse</code></a> function will skip its hostname
+sub-parser and use the hostname from <a href="Syslog_message.html#TYPEctx"><code class="code">Syslog_message.ctx</code></a> instead.</li>
+</ul>
+
+<code class="code">set_hostname</code> is automatically set by the timestamp sub-parser when it fails, because at this
+point it is no longer possible to determine the hostname from the input string.<br>
+</div>
+
+
+<pre><span id="VALctx_hostname"><span class="keyword">val</span> ctx_hostname</span> : <code class="type"><a href="Syslog_message.html#TYPEctx">ctx</a> -> string -> <a href="Syslog_message.html#TYPEctx">ctx</a></code></pre><div class="info ">
+<code class="code">ctx_hostname</code> sets a new hostname in <a href="Syslog_message.html#TYPEctx"><code class="code">Syslog_message.ctx</code></a><br>
+</div>
+
+<pre><span id="VALctx_set_hostname"><span class="keyword">val</span> ctx_set_hostname</span> : <code class="type"><a href="Syslog_message.html#TYPEctx">ctx</a> -> <a href="Syslog_message.html#TYPEctx">ctx</a></code></pre><div class="info ">
+<code class="code">ctx_set_hostname</code><br>
+</div>
+
 <pre><code><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> = {</code></pre><table class="typetable">
 <tr>
 <td align="left" valign="top" >
@@ -394,53 +440,11 @@ The type for Syslog messages<br>
 <code class="code">pp</code> pretty-prints a <a href="Syslog_message.html#TYPEt"><code class="code">Syslog_message.t</code></a> using print_string<br>
 </div>
 
-<pre><code><span id="TYPEctx"><span class="keyword">type</span> <code class="type"></code>ctx</span> = {</code></pre><table class="typetable">
-<tr>
-<td align="left" valign="top" >
-<code>&nbsp;&nbsp;</code></td>
-<td align="left" valign="top" >
-<code><span id="TYPEELTctx.timestamp">timestamp</span>&nbsp;: <code class="type"><a href="Syslog_message.html#TYPEtimestamp">timestamp</a></code>;</code></td>
-
-</tr>
-<tr>
-<td align="left" valign="top" >
-<code>&nbsp;&nbsp;</code></td>
-<td align="left" valign="top" >
-<code><span id="TYPEELTctx.hostname">hostname</span>&nbsp;: <code class="type">string</code>;</code></td>
-
-</tr>
-<tr>
-<td align="left" valign="top" >
-<code>&nbsp;&nbsp;</code></td>
-<td align="left" valign="top" >
-<code><span id="TYPEELTctx.set_hostname">set_hostname</span>&nbsp;: <code class="type">bool</code>;</code></td>
-
-</tr></table>
-}
-
-<div class="info ">
-<code class="code">ctx</code> provides additional information to the <a href="Syslog_message.html#VALparse"><code class="code">Syslog_message.parse</code></a> function in case one of the
-sub-parsers fails.<ul>
-<li><code class="code">timestamp</code>: A <a href="Syslog_message.html#TYPEtimestamp"><code class="code">Syslog_message.timestamp</code></a></li>
-<li><code class="code">hostname</code>: Hostname, IPv4 or IPv6 address of the sender. "<i>-</i>" if unknown.</li>
-<li><code class="code">set_hostname</code>: If true, the <a href="Syslog_message.html#VALparse"><code class="code">Syslog_message.parse</code></a> function will skip its hostname
-sub-parser and use the hostname from <a href="Syslog_message.html#TYPEctx"><code class="code">Syslog_message.ctx</code></a> instead.</li>
-</ul>
-
-<code class="code">set_hostname</code> is automatically set by the timestamp sub-parser when it fails, because at this
-point it is no longer possible to determine the hostname from the input string.<br>
-</div>
-
-
-<pre><span id="VALctx_hostname"><span class="keyword">val</span> ctx_hostname</span> : <code class="type"><a href="Syslog_message.html#TYPEctx">ctx</a> -> string -> <a href="Syslog_message.html#TYPEctx">ctx</a></code></pre><div class="info ">
-<code class="code">ctx_hostname</code> sets a new hostname in <a href="Syslog_message.html#TYPEctx"><code class="code">Syslog_message.ctx</code></a><br>
-</div>
-
-<pre><span id="VALctx_set_hostname"><span class="keyword">val</span> ctx_set_hostname</span> : <code class="type"><a href="Syslog_message.html#TYPEctx">ctx</a> -> <a href="Syslog_message.html#TYPEctx">ctx</a></code></pre><div class="info ">
-<code class="code">ctx_set_hostname</code><br>
-</div>
-
 <pre><span id="VALparse"><span class="keyword">val</span> parse</span> : <code class="type">?ctx:<a href="Syslog_message.html#TYPEctx">ctx</a> -> string -> <a href="Syslog_message.html#TYPEt">t</a> option</code></pre><div class="info ">
 <code class="code">parse</code>s a string containing a Syslog message and returns an option <a href="Syslog_message.html#TYPEt"><code class="code">Syslog_message.t</code></a><br>
+</div>
+
+<pre><span id="VALto_string"><span class="keyword">val</span> to_string</span> : <code class="type"><a href="Syslog_message.html#TYPEt">t</a> -> string</code></pre><div class="info ">
+<code class="code">to_string</code> returns a Syslog message of type <a href="Syslog_message.html#TYPEt"><code class="code">Syslog_message.t</code></a> as string<br>
 </div>
 </body></html>

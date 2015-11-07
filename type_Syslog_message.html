@@ -59,6 +59,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;second&nbsp;:&nbsp;int;<br>
 &nbsp;&nbsp;}<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;string_of_timestamp&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.timestamp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;ctx&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;timestamp&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.timestamp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;hostname&nbsp;:&nbsp;string;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;set_hostname&nbsp;:&nbsp;bool;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;ctx_hostname&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.ctx&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Syslog_message</span>.ctx<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;ctx_set_hostname&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.ctx&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Syslog_message</span>.ctx<br>
 &nbsp;&nbsp;<span class="keyword">type</span>&nbsp;t&nbsp;=&nbsp;{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;facility&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.facility;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;severity&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.severity;<br>
@@ -68,12 +75,6 @@
 &nbsp;&nbsp;}<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;pp_string&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;pp&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
-&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;ctx&nbsp;=&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;timestamp&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.timestamp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;hostname&nbsp;:&nbsp;string;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;set_hostname&nbsp;:&nbsp;bool;<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;ctx_hostname&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.ctx&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Syslog_message</span>.ctx<br>
-&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;ctx_set_hostname&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.ctx&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Syslog_message</span>.ctx<br>
 &nbsp;&nbsp;<span class="keyword">val</span>&nbsp;parse&nbsp;:&nbsp;?ctx:<span class="constructor">Syslog_message</span>.ctx&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Syslog_message</span>.t&nbsp;option<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;to_string&nbsp;:&nbsp;<span class="constructor">Syslog_message</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
 <span class="keyword">end</span></code></body></html>
